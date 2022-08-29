@@ -1,0 +1,7 @@
+# Hiding object, binaries and iso files
+*.o
+*.bin
+*.iso
+
+isodir/
+dist/
