@@ -9,8 +9,7 @@
 8 bits(al) lower :
   8 bits : ASCII character to print
 */
-uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
-{
+uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color) {
   uint16 ax = 0;
   uint8 ah = 0, al = 0;
 
@@ -25,31 +24,27 @@ uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
   return ax;
 }
 
-//clear video buffer array
-static
-void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
-{
+// clear video buffer array
+static void clear_vga_buffer(uint16 **buffer, uint8 fore_color,
+                             uint8 back_color) {
   uint32 i;
-  for(i = 0; i < BUFF_SIZE; i++){
+  for (i = 0; i < BUFF_SIZE; i++) {
     (*buffer)[i] = vga_entry(NULL, fore_color, back_color);
   }
 }
 
-//initialize vga buffer
-static
-void init_vga(uint8 fore_color, uint8 back_color)
-{
-  vga_buffer = (uint16*) VGA_ADDRESS;  //point vga_buffer pointer to VGA_ADDRESS
-  clear_vga_buffer(&vga_buffer, fore_color, back_color);  //clear buffer
+// initialize vga buffer
+static void init_vga(uint8 fore_color, uint8 back_color) {
+  vga_buffer = (uint16 *)VGA_ADDRESS; // point vga_buffer pointer to VGA_ADDRESS
+  clear_vga_buffer(&vga_buffer, fore_color, back_color); // clear buffer
 }
 
-void kernel_entry()
-{
-  //first init vga with fore & back colors
+void kernel_entry() {
+  // first init vga with fore & back colors
   init_vga(WHITE, BLACK);
 
-  //assign each ASCII character to video buffer
-  //you can change colors here
+  // assign each ASCII character to video buffer
+  // you can change colors here
   vga_buffer[0] = vga_entry('H', WHITE, BLACK);
   vga_buffer[1] = vga_entry('e', WHITE, BLACK);
   vga_buffer[2] = vga_entry('l', WHITE, BLACK);
