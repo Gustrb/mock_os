@@ -46,7 +46,7 @@ void init_vga(uint8 fore_color, uint8 back_color) {
 increase vga_index by width of row(80)
 */
 void print_new_line() {
-  if(next_line_index >= 55){
+  if (next_line_index >= 55) {
     next_line_index = 0;
     clear_vga_buffer(&vga_buffer, g_fore_color, g_back_color);
   }
@@ -60,23 +60,28 @@ void print_char(char ch) {
   vga_index++;
 }
 
-
-uint32 strlen(const char* str)
-{
+uint32 strlen(const char* str) {
   uint32 length = 0;
-  while(str[length])
+
+  while (str[length]) {
     length++;
+  }
+
   return length;
 }
 
 uint32 digit_count(int num) {
   uint32 count = 0;
-  if(num == 0)
+
+  if (num == 0) {
     return 1;
-  while(num > 0){
-    count++;
-    num = num/10;
   }
+
+  while (num > 0) {
+    count++;
+    num = num / 10;
+  }
+
   return count;
 }
 
@@ -84,24 +89,28 @@ void itoa(int num, char *number) {
   int dgcount = digit_count(num);
   int index = dgcount - 1;
   char x;
-  if(num == 0 && dgcount == 1){
+
+  if (num == 0 && dgcount == 1) {
     number[0] = '0';
     number[1] = '\0';
-  }else{
-    while(num != 0){
-      x = num % 10;
-      number[index] = x + '0';
-      index--;
-      num = num / 10;
-    }
-    number[dgcount] = '\0';
+    return;
   }
+
+  while (num != 0) {
+    x = num % 10;
+    number[index] = x + '0';
+    index--;
+    num = num / 10;
+  }
+
+  number[dgcount] = '\0';
 }
 
 //print string by calling print_char
 void print_string(char *str) {
   uint32 index = 0;
-  while(str[index]){
+
+  while (str[index]){
     print_char(str[index]);
     index++;
   }
@@ -110,7 +119,7 @@ void print_string(char *str) {
 //print int by converting it into string
 //& then printing string
 void print_int(int num) {
-  char str_num[digit_count(num)+1];
+  char str_num[digit_count(num) + 1];
   itoa(num, str_num);
   print_string(str_num);
 }
