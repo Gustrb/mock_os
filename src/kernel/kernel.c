@@ -1,19 +1,17 @@
 #include "kernel.h"
 
 #include "io/includes/vga.h"
+#include "io/includes/keyboard.h"
 
 void kernel_entry() {
   //first init vga with fore & back colors
   init_vga(WHITE, BLACK);
 
-  /*call above function to print something
-    here to change the fore & back color
-    assign g_fore_color & g_back_color to color values
-    g_fore_color = BRIGHT_RED;
-  */
-  print_string("Hello World!");
-  print_new_line();
-  print_int(123456789);
-  print_new_line();
-  print_string("Goodbye World!");
+  char current_char = 0;
+  while (current_char != KEY_ENTER) {
+    current_char = get_input_keycode();
+    print_new_line();
+    print_int(current_char);
+    sleep(0x02FFFFFF);
+  }
 }

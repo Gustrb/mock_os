@@ -115,4 +115,18 @@ void outb(uint16 port, uint8 data);
  */
 char get_input_keycode();
 
+/**
+ * Waits timer_count cycles while on asm(noop)
+ *
+ * @param timer_count the number of cycles
+ */
+void wait_for_io(uint32 timer_count);
+
+/**
+ * wait_for_io alias
+ *
+ * @param timer_count the number of cycles
+ */
+void sleep(uint32 timer_count);
+
 #endif
