@@ -1,6 +1,8 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
+#define KEYBOARD_PORT 0x60
+
 #define KEY_A 0x1E
 #define KEY_B 0x30
 #define KEY_C 0x2E
@@ -84,5 +86,33 @@
 #define KEY_SPACE 0x39
 #define KEY_TAB 0x0F
 #define KEY_UP 0x48
+
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+
+/**
+ * Reads a byte from the given port
+ *
+ * @param port the port to be read from
+ *
+ * @return uint8 the byte read from the port
+ */
+uint8 inb(uint16 port);
+
+/**
+ * Sends data byte to the specified port
+ *
+ * @param port the port to send the data to
+ * @param data the data to send
+ */
+void outb(uint16 port, uint8 data);
+
+/**
+ * Gets the keycode from the keyboard
+ *
+ * @return char the keycode from the keyboard
+ */
+char get_input_keycode();
 
 #endif

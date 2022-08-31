@@ -21,6 +21,7 @@ int digit_ascii_codes[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x3
  * @param ch the character to be printed.
  * @param fore_color the foreground color is used to paint the character.
  * @param back_color the background color is used to paint the screen.
+ *
  * @return uint16 the vga uint16 that corresponds to the fore_ground color, back_ground color and the character to be printed.
  */
 PRIVATE uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color) {
