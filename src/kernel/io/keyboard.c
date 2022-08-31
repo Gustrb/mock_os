@@ -17,7 +17,7 @@ char get_input_keycode() {
   char ch = 0;
 
   // While the recieved keycode is not a valid keycode, keep looping.
-  while ((ch = inb(KEYBOARD_PORT)) == 0) {
+  while ((ch = inb(KEYBOARD_PORT)) != 0) {
     // If the keycode is a valid keycode, return it.
     if (ch > 0) return ch;
   }
